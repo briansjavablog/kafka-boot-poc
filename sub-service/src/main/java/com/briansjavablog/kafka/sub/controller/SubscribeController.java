@@ -1,6 +1,6 @@
 package com.briansjavablog.kafka.sub.controller;
 
-import com.briansjavablog.kafka.sub.MessageSubscribeService;
+import com.briansjavablog.kafka.sub.service.MessageSubscribeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

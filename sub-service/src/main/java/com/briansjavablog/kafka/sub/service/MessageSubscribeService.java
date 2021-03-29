@@ -1,4 +1,4 @@
-package com.briansjavablog.kafka.sub;
+package com.briansjavablog.kafka.sub.service;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

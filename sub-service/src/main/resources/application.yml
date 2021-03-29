@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: SubService
+
+server:
+  port: 8081
+
+kafka:
+  bootstrapAddress: kafka:9092
+
+message:
+  topic:
+    name: testTopic
+    numberOfPartitions: 2
+    replicationFactor: 1

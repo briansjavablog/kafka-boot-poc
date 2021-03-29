@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: PubService
+
+kafka:
+  bootstrapAddress: kafka:9092
+
+message:
+  topic:
+    name: testTopic
+    numberOfPartitions: 2
+    replicationFactor: 1

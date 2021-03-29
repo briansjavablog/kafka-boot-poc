@@ -1,0 +1,8 @@
+pub-service/target/
+pub-service/.idea/*
+pub-service/*.iml
+sub-service/target
+sub-service/.idea/*
+sub-service/*.iml
+.idea/*
+

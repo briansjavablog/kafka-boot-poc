@@ -24,4 +24,12 @@ public class MessageSubscribeService {
         messages.add(message);
     }
 
+    @KafkaListener(topics = "logs",
+            groupId = "logsGroup",
+            containerFactory = "logsGroupKafkaListenerContainerFactory")
+    public void listenLogsGroup(String message) {
+
+        log.info("Received Message [{}] in group [logsGroup]", message);
+        messages.add(message);
+    }
 }

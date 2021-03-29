@@ -30,4 +30,8 @@ public class KafkaTopicConfig {
     return new NewTopic(topicName, 1, (short) 1);
   }
 
+  @Bean
+  public NewTopic logs() {
+    return new NewTopic("logs", 1, (short) 1);
+  }
 }

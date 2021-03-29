@@ -43,4 +43,9 @@ public class KafkaConsumerConfig {
     return kafkaListenerContainerFactory("testGroup");
   }
 
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<String, String> logsGroupKafkaListenerContainerFactory() {
+    return kafkaListenerContainerFactory("logsGroup");
+  }
+
 }

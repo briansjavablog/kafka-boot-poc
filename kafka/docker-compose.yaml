@@ -1,0 +1,28 @@
+version: '2'
+services:
+  pubservice:
+    image: briansjavablog/pubservice
+    ports:
+      - "8080:8080"
+  subservice:
+    image: briansjavablog/subservice
+    ports:
+      - "8081:8081"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 172.17.0.1
+      # running outside of docker-compose
+      #KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      # running with docker-compose
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CREATE_TOPICS: "logs:1:1,testTopic:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

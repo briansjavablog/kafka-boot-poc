@@ -18,9 +18,16 @@ public class MessageSubscribeService {
     @KafkaListener(topics = "${message.topic.name}",
                    groupId = "testGroup",
                    containerFactory = "testGroupKafkaListenerContainerFactory")
-    public void listenTestGroup(String message) {
+    public void listenTestGroup(String message) throws Exception {
 
-        log.info("Received Message [{}] in group [testGroup]", message);
+        log.info("Received Message [{}] in group [testGroupX]", message);
+
+        /* trigger an error here so that we can test Retries */
+        if(message.contains("error")){
+            log.error("Oops....an error has occurred");
+            throw new Exception("Oops....an error has occurred");
+        }
+
         messages.add(message);
     }
 

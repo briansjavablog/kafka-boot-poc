@@ -13,6 +13,8 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
 
 
 @EnableKafka
@@ -35,6 +37,7 @@ public class KafkaConsumerConfig {
   public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(String groupId) {
     ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory(groupId));
+    factory.setRetryTemplate(retryTemplate());
     return factory;
   }
 
@@ -45,7 +48,18 @@ public class KafkaConsumerConfig {
 
   @Bean
   public ConcurrentKafkaListenerContainerFactory<String, String> logsGroupKafkaListenerContainerFactory() {
-    return kafkaListenerContainerFactory("logsGroup");
+    return kafkaListenerContainerFactory("logs");
+  }
+
+  private RetryTemplate retryTemplate() {
+
+    RetryTemplate retryTemplate = new RetryTemplate();
+    Map<Class<? extends Throwable>, Boolean> exceptionMap = new HashMap<>();
+    /* decide whether or not we want to retry this type of exception */
+    exceptionMap.put(Exception.class, true);
+
+    retryTemplate.setRetryPolicy(new SimpleRetryPolicy(3, exceptionMap,true));
+    return retryTemplate;
   }
 
 }

@@ -1,11 +1,11 @@
 version: '2'
 services:
   pubservice:
-    image: briansjavablog/pubservice
+    image: briansjavablog/pub-service:latest
     ports:
       - "8080:8080"
   subservice:
-    image: briansjavablog/subservice
+    image: briansjavablog/sub-service:latest
     ports:
       - "8081:8081"
   zookeeper:

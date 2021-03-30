@@ -14,10 +14,6 @@ import java.util.List;
 @Service
 public class MessageSubscribeService {
 
-    // retry
-    // recover
-    // error handler
-
     @Getter
     private List<String> messages = new ArrayList<>();
 
@@ -46,7 +42,7 @@ public class MessageSubscribeService {
     @KafkaListener(topics = "messageDeadLetterTopic",
                     groupId = "messageDeadLetterGroup",
                     containerFactory = "messageDeadLetterGroupKafkaListenerContainerFactory")
-    public void listenMessagesDeadLetterTopic(String message,  @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition, @Header(KafkaHeaders.GROUP_ID) String groupId) throws Exception {
+    public void listenMessagesDeadLetterTopic(String message,  @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition, @Header(KafkaHeaders.GROUP_ID) String groupId) {
 
         log.info("Received Message (message DLT) [{}] in group [{}] partition [{}]", message, groupId, partition);
 

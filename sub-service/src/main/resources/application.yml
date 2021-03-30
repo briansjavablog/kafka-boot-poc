@@ -3,13 +3,14 @@ spring:
     name: SubService
 
 server:
-  port: 8081
+  port: 8082
+  address: 0.0.0.0
 
 kafka:
   bootstrapAddress: kafka:9092
 
 message:
   topic:
-    name: testTopic
+    name: messageTopic
     numberOfPartitions: 2
     replicationFactor: 1

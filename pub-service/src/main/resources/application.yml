@@ -7,6 +7,6 @@ kafka:
 
 message:
   topic:
-    name: testTopic
+    name: messageTopic
     numberOfPartitions: 2
     replicationFactor: 1

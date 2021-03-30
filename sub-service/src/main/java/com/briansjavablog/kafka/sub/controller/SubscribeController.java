@@ -22,4 +22,16 @@ public class SubscribeController {
     return ResponseEntity.ok(messageSubscribeService.getMessages());
   }
 
+  @GetMapping("/api/dlt-messages")
+  public ResponseEntity<List<String>> getDeadLetterTopicMessages() {
+
+    return ResponseEntity.ok(messageSubscribeService.getDeadLetterMessages());
+  }
+
+  @GetMapping("/api/logs")
+  public ResponseEntity<List<String>> getLogMessages() {
+
+    return ResponseEntity.ok(messageSubscribeService.getLogs());
+  }
+
 }

@@ -26,12 +26,12 @@ public class KafkaTopicConfig {
   }
 
   @Bean
-  public NewTopic testTopic() {
+  public NewTopic messageTopic() {
     return new NewTopic(topicName, 1, (short) 1);
   }
 
   @Bean
-  public NewTopic logs() {
+  public NewTopic logsTopic() {
     return new NewTopic("logs", 1, (short) 1);
   }
 }
